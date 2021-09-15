@@ -36,6 +36,7 @@ The OSM mask was created using QGIS and OSM data with the label 'wetland', as we
 
 
 For the input data the two Raster image (3-band image and OSM mask) are tiled into 2500 individual tiles each.
+Therefore the input_data and OSM_mask file need to bee downloaded from the google drive and stored the according directory : 
 For details see tiling.R
 
 
