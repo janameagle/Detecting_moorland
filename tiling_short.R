@@ -9,7 +9,7 @@ library(SpaDES)
 #########################################################
 # functions for splitting
 
-setwd("C:/Users/annik/Documents/DetectingMoorlands/")
+setwd("C:/Users/annik/Desktop/Detecting_moorland/")
 
 #########################################################
 # function for tiling
@@ -40,8 +40,8 @@ split_raster <- function(r, nx, ny, buffer = c(0,0)) {
 #########################################################
 
 #Load Input Data
-input_data <- stack("Input_RE_NIR_SRTM.tif")
-OSM_mask <- raster("OSM_mask.tif")
+input_data <- stack("./Input/Input_RE_NIR_SRTM.tif")
+OSM_mask <- raster("./Input/OSM_mask.tif")
 
 #tiling
 
@@ -53,12 +53,12 @@ mask <- split_raster(OSM_mask, 50, 50)
 for (i in 1:length(mask)) {
    if (1 %in% unique(mask[[i]])){
       
-      writeJPEG(as.array(mask[[i]]), paste0("./Detecting_Moorland/mask/", i, "_x_mask.jpg"))
-      writeJPEG(as.array(img[[i]])/255, paste0("./Detecting_Moorland/img/", i, "_x_tiles.jpg"))
+      writeJPEG(as.array(mask[[i]]), paste0("./mask/", i, "_x_mask.jpg"))
+      writeJPEG(as.array(img[[i]])/255, paste0("./img/", i, "_x_img.jpg"))
       
       } else{
-         writeJPEG(as.array(mask[[i]])/255, paste0("./Detecting_Moorland/mask/", i, "_mask.jpg"))
-         writeJPEG(as.array(img[[i]])/255, paste0("./Detecting_Moorland/img/", i, "_tiles.jpg"))
+         writeJPEG(as.array(mask[[i]]), paste0("./mask/", i, "_mask.jpg"))
+         writeJPEG(as.array(img[[i]])/255, paste0("./img/", i, "_img.jpg"))
          
 }}
 

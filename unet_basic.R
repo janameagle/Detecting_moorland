@@ -14,18 +14,18 @@ getwd()
 
 # get the input shape
 library(jpeg)
-image = readJPEG("C:/Users/annik/Documents/DetectingMoorlands/Detecting_Moorland/tiles/6_x_tiles.jpg")
+image = readJPEG("C:/Users/annik/Desktop/Detecting_moorland/img/6_x_img.jpg")
 dim(image)
 
 
 
 
-setwd("C:/Users/annik/Documents/DetectingMoorlands/Detecting_Moorland/")
+setwd("C:/Users/annik/Desktop/Detecting_moorland/")
 
 # index data
 data <- rbind(
   data.frame(
-    img = list.files("tiles/", pattern="*_x_*", full.names = T),
+    img = list.files("img/", pattern="*_x_*", full.names = T),
     mask = list.files("mask/", pattern="*_x_*", full.names = T)
   )
 )
