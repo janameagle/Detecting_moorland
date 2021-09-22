@@ -19,7 +19,7 @@ Output: trained U-net model, which can be found here:
 
 Authors: Jana Maier, Nora Nieskens, Annika Ludwig 
 
-Context: This project serves as final submission for the Advanced Programming Course 2021 at Julius-Maximilians-University Würzburg. 
+Context: This project serves as final submission for the Advanced Programming Course 2021 at Julius-Maximilians-University WÃ¼rzburg. 
 
 
 
@@ -50,6 +50,7 @@ For details see unet.R
 An overview about the workflow:
 
 
+![Workflow_dl_moor](https://user-images.githubusercontent.com/57681769/134295716-9e25de9c-b680-44fd-b226-42c2b9cf9611.png)
 
 
 
