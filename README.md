@@ -27,9 +27,9 @@ Context: This project serves as final submission for the Advanced Programming Co
 
 
 
-First, a 3-band image consisting of Sentinel-2 red, Sentinel-2 nir, SRTM was created using Google Earth Engine. 
-Sentinel-2 images were used to create a cloud-free and cloud-shadow-free median composite of the summer period of 2020. 
-Details can be found here: https://code.earthengine.google.com/090d981bb93db4d29db21f7166ac1453
+First, a 3-band image consisting of Sentinel-2 red, Sentinel-2 nir, SRTM was created using Google Earth Engine and the tiling.R script.
+Sentinel-2 images were used to create a cloud-free and cloud-shadow-free median composite of the summer period of 2020. Inside the tiling script the according bands are selected, resampled to fit each other and rescaled for creating RGB images.
+The Google Earth Engine script can be found here: https://code.earthengine.google.com/090d981bb93db4d29db21f7166ac1453
 
 
 The OSM mask was created using QGIS and OSM data with the label 'wetland', as we are working with data from southern Germany and all wetlands belong to moors.
