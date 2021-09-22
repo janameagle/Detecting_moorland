@@ -13,7 +13,7 @@ In this project we are training a machine learning model, more precisely a U-net
 Input data: 3-band image of the wetland region in southern Germany 
               Bands: Sentinel-2 red, Sentinel-2 nir, SRTM 
             Binary mask of moor areas retreived from OSM data, same extent in southern Germany 
-            Both files can be found here: 
+            Both files can be found in the 'Input' folder.
 
 Output: trained U-net model, which can be found here: 
 
@@ -35,8 +35,7 @@ Details can be found here: https://code.earthengine.google.com/090d981bb93db4d29
 The OSM mask was created using QGIS and OSM data with the label 'wetland', as we are working with data from southern Germany and all wetlands belong to moors.
 
 
-For the input data the two Raster image (3-band image and OSM mask) are tiled into 2500 individual tiles each.
-Therefore the input_data and OSM_mask file need to bee downloaded from the google drive and stored the according directory : 
+For the input data the two Raster image (3-band image and OSM mask) are tiled into about 5000 individual tiles each, which can be found in the 'img' and 'mask' folder.
 For details see tiling.R
 
 
