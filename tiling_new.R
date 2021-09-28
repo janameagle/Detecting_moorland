@@ -1,42 +1,14 @@
-# Tiling Raster Input 
+#########################################################
+# Create Raster Stack and tiling images
+#########################################################
 
+#Load Libraries and set working directory
 library(raster)
 library(RStoolbox)
 library(jpeg)
-library(ggplot2)
-library(SpaDES)
 
-
-getwd()
-setwd("enter your working direction here/Detecting_moorland")
-
-
-#########################################################
-# preprocessing and stacking the input data
-s2 <- stack("Input/S2_median_30m.tif")
-
-srtm <- raster("Input/srtm.tif")
-
-
-# remove na values
-s2[is.na(s2[])] <- 0 
-s2 <- s2[1:7]
-s2 <- rescaleImage(s2, ymin=0, ymax=255)
-
-
-# select the bands needed and rescale for RGB plot
-re <- s2[[4]]
-nir <- s2[[7]]
-min <- min(values(srtm))
-max <- max(values(srtm))
-srtm_elev <- rescaleImage(srtm, xmin = min, xmax = max, ymin=0, ymax=255)
-
-
-merged_re_nir_srtm <- stack(re, nir, srtm_elev)
-
-writeRaster(merged_re_nir_srtm, "Input/Input_RE_NIR_SRTM.tif", overwrite = TRUE)
-
-
+#setwd("enter your working direction here/Detecting_moorland")
+setwd("C:/Users/annik/Desktop/Detecting_moorland/")
 
 #########################################################
 # function for tiling
@@ -65,27 +37,52 @@ split_raster <- function(r, nx, ny, buffer = c(0,0)) {
 }
 
 #########################################################
+#########################################################
+# Preprocess Input Data 
 
-#Load Input Data
-input_data <- stack("./Input/Input_RE_NIR_SRTM.tif")
-OSM_mask <- raster("./Input/OSM_mask.tif")
+#Load Sentinel 2 Scene and SRTM
+s2 <- stack("./Input/S2_median_30m.tif")
+srtm <- raster("./Input/srtm.tif")
+osm_mask <- raster("./Input/OSM_mask.tif")
+
+
+# Remove NA Values
+s2[is.na(s2[])] <- 0 
+
+# Rescale Input Data (Range 0-255)
+re <- rescaleImage(s2[[4]], ymin=0, ymax=255)
+nir <- rescaleImage(s2[[7]], ymin=0, ymax=255)
+srtm <- rescaleImage(srtm, ymin=0, ymax=255)
+
+#stack images
+merged_re_nir_srtm <- stack(re, nir, srtm_elev)
+
+#write raster with stacked input images
+writeRaster(merged_re_nir_srtm, "Input/Input_RE_NIR_SRTM.tif", overwrite = TRUE)
+
 
 #tiling
 
-img <- split_raster(input_data, 50, 50)
-mask <- split_raster(OSM_mask, 50, 50)
+img <- split_raster(merged_re_nir_srtm, 50, 50)
+mask <- split_raster(osm_mask, 50, 50)
 
 #########################################################
+
+tiles <- lapply(seq_along(tiles), function(i) crop_tiles(i, tiles, r)) 
+
+
 
 for (i in 1:length(mask)) {
    if (1 %in% unique(mask[[i]])){
       
-      writeJPEG(as.array(mask[[i]]), paste0("./temp/", i, "_x_mask.jpg"))
-      writeJPEG(as.array(img[[i]]), paste0("./temp/", i, "_x_img.jpg"))
+      writeJPEG(as.array(mask[[i]]), paste0("./mask/", i, "_x_mask.jpg"))
+      writeJPEG(as.array(img[[i]]/255), paste0("./img/", i, "_x_img.jpg"))
       
       } else{
-         writeJPEG(as.array(mask[[i]]), paste0("./temp/", i, "_mask.jpg"))
-         writeJPEG(as.array(img[[i]]), paste0("./temp/", i, "_img.jpg"))
+         writeJPEG(as.array(mask[[i]]), paste0("./mask/", i, "_mask.jpg"))
+         writeJPEG(as.array(img[[i]]/255), paste0("./img/", i, "_img.jpg"))
          
-}}
+      }}
+
+#########################################################
 
