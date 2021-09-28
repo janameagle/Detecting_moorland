@@ -2,7 +2,7 @@
 
 Moors (also moorland / bog / swamp / mire) provide unique habitats for many plants and animals.
 They alleviate floods and filter polluted water.
-Furthermore they play a key role in the carbon cycle and thus in climate change.
+Furthermore they play a key role in the carbon cycle and thus in climate change (Guo et al, 2017).
 
 Therefore it is important to have detailed and extensive data and knowledge about them and their distribution.
 
