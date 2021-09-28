@@ -35,7 +35,7 @@ The Google Earth Engine script can be found here: https://code.earthengine.googl
 The OSM mask was created using QGIS and OSM data with the label 'wetland', as we are working with data from southern Germany and all wetlands belong to moors.
 
 
-For the input data the two Raster image (3-band image and OSM mask) are tiled into about 5000 individual tiles each, which can be found in the 'img' and 'mask' folder.
+For the input data the two Raster image (3-band image and OSM mask) are tiled into about 2500 individual tiles each, which can be found in the 'img' and 'mask' folder.
 For details see tiling.R
 
 
