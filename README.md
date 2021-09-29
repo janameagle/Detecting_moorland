@@ -27,7 +27,7 @@ Context: This project serves as final submission for the Advanced Programming Co
 
 
 
-First, a 3-band image consisting of Sentinel-2 red edge, Sentinel-2 nir, SRTM was created using Google Earth Engine and the tiling.R script.
+First, a 3-band image consisting of Sentinel-2 red edge, Sentinel-2 nir, SRTM was created using Google Earth Engine and the 1_tiling.R script.
 Sentinel-2 images were used to create a cloud-free and cloud-shadow-free median composite of the summer period of 2020. Inside the tiling script the according bands are selected, resampled to fit each other and rescaled for creating RGB images.
 The Google Earth Engine script can be found here: https://code.earthengine.google.com/090d981bb93db4d29db21f7166ac1453
 
@@ -36,12 +36,12 @@ The OSM mask was created using QGIS and OSM data with the label 'wetland', as we
 
 
 For the input data the two Raster image (3-band image and OSM mask) are tiled into about 2500 individual tiles each, which can be found in the 'img' and 'mask' folder.
-For details see tiling.R. Additionally the tiles are marked with an "_ x" to determine if they include a wetland. Only these tiles are then used for training of the model, to avoid biased input data by too many tile with no wetland at all.
+For details see 1_tiling.R. Additionally the tiles are marked with an "_ x" to determine if they include a wetland. Only these tiles are then used for training of the model, to avoid biased input data by too many tile with no wetland at all.
 
 
 For the model, the pre-trained VGG16 model is used and expanded manually to a U-net. 
 Through adjustment of the model parameters learning rate, number of epochs and batch size, the resulting accuracy can be enhanced.
-For details see unet.R
+For details see 2_segmentation_unet.R
 
 
 
