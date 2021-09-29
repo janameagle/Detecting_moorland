@@ -27,7 +27,7 @@ image = readJPEG("img/img_x_6.jpg")
 dim(image)
 
 
-# load data
+# load data; tiles that contain at least one pixel of wetland are marked with "_x_", these include enough non-wetland areas so that all other tiles are not used
 data <- rbind(
   data.frame(
     img = list.files("img/", pattern="*_x_*", full.names = T),
@@ -68,7 +68,7 @@ train_ds <- dataset_map(
                 mask = tf$image$convert_image_dtype(x$mask, dtype = tf$float32))
 ) 
 
-# resize images in case they dont fit out input shape
+# resize images in case they dont fit our input shape
 train_ds <- dataset_map(
   train_ds, function(x) 
     list_modify(x,
@@ -201,9 +201,9 @@ unet_model <- load_model_hdf5(filepath = "moorland_imagenet_model_lr0_0005.h5")
 # evaluation: accuracy and loss
 evaluate(unet_model, val_ds)
 
-#Plot example images
+#Plot example images: OSM mask, 3-band image and prediction
 i_image = 29
-#pred1 <- predict(object = unet_model,val_ds)
+pred1 <- predict(object = unet_model,val_ds)
 pred <- pred1[i_image,,,]
 plot(
   image_append(c(
@@ -212,20 +212,5 @@ plot(
     image_append(image_read(as.raster(pred)), stack = TRUE)
   )))
 
-#str(pred1)
-#pred1raster <- as.raster(pred1[0:2,])
 
-#pred_raster <- as.raster(pred)
-#writeRaster(pred_raster, "image150.tif", format = "GTiff")
 
-image(t(apply(pred, 2, rev)), col=heat.colors(500, rev = FALSE))
-
-################################################################################
-#Validation Results
-
-pred <- data.frame(
-  y = testing(data)$label,
-  yhat = round(predict(unet_model, val_ds))
-)
-
-table(pred) # here you see matching, false positive and false negatives
