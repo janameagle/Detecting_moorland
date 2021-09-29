@@ -13,7 +13,7 @@ In this project we are training a machine learning model, more precisely a U-net
 Input data: 3-band image of the wetland region in southern Germany 
               Bands: Sentinel-2 red, Sentinel-2 nir, SRTM 
             Binary mask of moor areas retreived from OSM data, same extent in southern Germany 
-            Both files can be found here: https://we.tl/t-I1V0aID1cl
+            Both files, as well as the non-stacked S2 and SRTM images, can be found here: https://drive.google.com/drive/folders/1fl3z8d9qsrOaf3YaX-IDbq9M1FQYAMZA?usp=sharing
 
 Output: trained U-net model, which can be found here: 
 
@@ -36,7 +36,7 @@ The OSM mask was created using QGIS and OSM data with the label 'wetland', as we
 
 
 For the input data the two Raster image (3-band image and OSM mask) are tiled into about 2500 individual tiles each, which can be found in the 'img' and 'mask' folder.
-For details see tiling.R
+For details see tiling.R. Additionally the tiles are marked with an "_ x" to determine if they include a wetland. Only these tiles are then used for training of the model, to avoid biased input data by too many tile with no wetland at all.
 
 
 For the model, the pre-trained VGG16 model is used and expanded manually to a U-net. 
