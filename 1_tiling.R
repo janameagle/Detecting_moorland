@@ -7,8 +7,7 @@ library(raster)
 library(RStoolbox)
 library(jpeg)
 
-#setwd("enter your working direction here/Detecting_moorland")
-setwd("C:/Users/annik/Desktop/Detecting_moorland/")
+setwd("enter your working direction here/Detecting_moorland")
 
 #########################################################
 # function for tiling
@@ -66,6 +65,8 @@ img <- split_raster(merged_re_nir_srtm, 30, 30)
 mask <- split_raster(osm_mask, 30, 30)
 
 #########################################################
+
+#write files as jpg
 
 for (i in 1:length(mask)) {
    if (1 %in% unique(mask[[i]])){
