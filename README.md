@@ -13,7 +13,7 @@ In this project we are training a machine learning model, more precisely a U-net
 Input data: 3-band image of the wetland region in southern Germany 
               Bands: Sentinel-2 red, Sentinel-2 nir, SRTM 
             Binary mask of moor areas retreived from OSM data, same extent in southern Germany 
-            Both files can be found in the 'Input' folder.
+            Both files can be found here: https://we.tl/t-I1V0aID1cl
 
 Output: trained U-net model, which can be found here: 
 
