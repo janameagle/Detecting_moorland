@@ -15,7 +15,7 @@ Input data: 3-band image of the wetland region in southern Germany
             Binary mask of moor areas retreived from OSM data, same extent in southern Germany 
             Both files, as well as the non-stacked S2 and SRTM images, can be found here: https://drive.google.com/drive/folders/1fl3z8d9qsrOaf3YaX-IDbq9M1FQYAMZA?usp=sharing
 
-Output: trained U-net model, which can be found here: 
+Output: trained U-net model, which can be found here: https://drive.google.com/drive/folders/1fl3z8d9qsrOaf3YaX-IDbq9M1FQYAMZA?usp=sharing
 
 Authors: Jana Maier, Nora Nieskens, Annika Ludwig 
 
