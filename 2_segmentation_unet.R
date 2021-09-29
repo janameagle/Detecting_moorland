@@ -178,7 +178,7 @@ unet_model
 # compile the model
 compile(
   unet_model,
-  optimizer = optimizer_rmsprop(lr = 0.0005),
+  optimizer = optimizer_rmsprop(lr = 0.00001),
   loss = "binary_crossentropy",
   metrics = c(metric_binary_accuracy)
 )
